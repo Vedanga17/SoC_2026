@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #004d00; 
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none; /* Removes the bullet points */
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Styles */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+section:last-child {
+    border-bottom: none; 
+}
+
+h2 {
+    color: #004d00;
+    margin-bottom: 10px;
+}
+
+ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+/* Quiz Styles */
+input {
+    padding: 8px;
+    font-size: 16px;
+}
+
+button {
+    padding: 8px 15px;
+    font-size: 16px;
+    background-color: #004d00;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003300;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+footer a {
+    color: #4CAF50;
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column; /* Stacks the menu items on top of each other */
+        gap: 10px;
+    }
+}
