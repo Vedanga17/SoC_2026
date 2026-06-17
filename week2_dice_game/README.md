@@ -1,16 +1,23 @@
-# React + Vite
+# Week 2: React Dice Game 🎲
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my Week 2 assignment for the frontend development course. It is an interactive, React-based dice game that tests your luck, tracks your stats, and saves your scores!
 
-Currently, two official plugins are available:
+## Features
+* **Interactive Gameplay:** Select a number and roll the dice. Win points for matching, lose points for missing.
+* **Live Statistics Dashboard:** Tracks total rolls, correct/wrong guesses, and calculates real-time accuracy.
+* **Session Leaderboard:** Saves your scores and ranks them when you end the game.
+* **Responsive Layout:** Flexbox design that works perfectly on both desktop and mobile screens.
+* **Modern UI Techniques:** Uses CSS `mix-blend-mode` to seamlessly blend images into the background.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
+* React.js
+* Vite
+* Standard CSS3
+* JavaScript (Hooks & State Management)
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to Run Locally
+If you want to download and run this game on your own machine, follow these steps:
+1. Open your terminal and navigate to this folder.
+2. Run `npm install` to install the required React dependencies.
+3. Run `npm run dev` to start the local server.
+4. Click the localhost link provided in the terminal to play!

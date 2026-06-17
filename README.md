@@ -2,4 +2,5 @@
 
 This repository contains all of my weekly assignments for my frontend development course. 
 
-* **[Week 1: Intro Website (Cricket 101)](./week-01)**
+* **[Week 1: Intro Website (Cricket 101)](./week1)**
+* **[Week 2: React Dice Game](./week2)**
