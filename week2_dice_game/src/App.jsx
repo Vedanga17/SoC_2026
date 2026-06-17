@@ -72,7 +72,7 @@ function Game() {
     }));
   };
 
-  // New Function: Save the current session and reset the board
+  // Save the current session and reset the board
   const saveAndResetGame = () => {
     if (stats.rolls === 0) return; // Don't save empty games
 

@@ -58,7 +58,7 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #f8f9fa; /* Matches website background */
-  gap: 50px; /* Adds nice space between the image and the text */
+  gap: 50px; /* Adds space between the image and the text */
   padding: 20px;
 }
 
@@ -66,13 +66,11 @@ body {
   width: 100%; 
   max-width: 400px; /* Keeps the dice from taking up the whole screen */
   height: auto;
-  
-  /* THE MAGIC TRICK: Makes the white background disappear! */
-  mix-blend-mode: multiply; 
+  mix-blend-mode: multiply; /* tries to blend the bg of both the image and the screen */
 }
 
 .hero-content {
-  text-align: left; /* Aligns text nicely next to the image */
+  text-align: left; /* Aligns text properly, next to the image */
   max-width: 400px;
 }
 
@@ -88,7 +86,6 @@ body {
   color: #666;
 }
 
-/* Make sure the primary button style is still here! */
 .primary-btn {
   padding: 10px 20px;
   border-radius: 5px;
@@ -244,7 +241,6 @@ body {
   }
 }
 
-/* --- Dashboard & Leaderboard Additions --- */
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
