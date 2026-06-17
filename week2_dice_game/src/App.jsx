@@ -89,8 +89,14 @@ function Game() {
       accuracy: accuracy,
     };
 
-    // Add new session to the beginning of the leaderboard array
-    setLeaderboard([newSession, ...leaderboard]);
+    // Creates a new array with all old sessions and the new session
+    const updatedLeaderboard = [...leaderboard, newSession];
+
+    // Have to sort the array so that the highest finalScore is at the top
+    updatedLeaderboard.sort((a, b) => b.finalScore - a.finalScore);
+
+    // Save the sorted array to React State
+    setLeaderboard(updatedLeaderboard);
 
     // Reset the current game board
     setScore(0);
