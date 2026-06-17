@@ -38,26 +38,27 @@ function Game() {
   // Leaderboard State (Array to store past sessions)
   const [leaderboard, setLeaderboard] = useState([]);
 
+  // Mapping dice faces to their corresponding numbers
   const diceFaces = ["", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
   const numbers = [1, 2, 3, 4, 5, 6];
 
   const handleNumberSelect = (value) => {
     setSelectedNumber(value);
-    setError(""); 
+    setError("");  // on selecting the number, the error goes away.
   };
 
   const rollDice = () => {
     if (!selectedNumber) {
-      setError("You have not selected any number!");
+      setError("You have not selected any number, select one!"); // forces the user to select a number
       return;
     }
 
-    const randomRoll = Math.floor(Math.random() * 6) + 1;
+    const randomRoll = Math.floor(Math.random() * 6) + 1; // randomizing the roll
     setCurrentDice(randomRoll);
 
     const isCorrect = selectedNumber === randomRoll;
 
-    // Update Score
+    // Update Score according to rules
     if (isCorrect) {
       setScore((prev) => prev + selectedNumber);
     } else {
@@ -70,6 +71,8 @@ function Game() {
       correct: isCorrect ? prevStats.correct + 1 : prevStats.correct,
       wrong: isCorrect ? prevStats.wrong : prevStats.wrong + 1,
     }));
+
+    setSelectedNumber(null); // Have to select a new number everytime
   };
 
   // Save the current session and reset the board
@@ -132,7 +135,6 @@ function Game() {
         </div>
 
         <div className="controls">
-          {/* Changed this button to save the session */}
           <button className="secondary-btn" onClick={saveAndResetGame}>
             End Game and save your score
           </button>
@@ -140,8 +142,8 @@ function Game() {
             className="secondary-btn dark" 
             onClick={() => setShowRules(!showRules)}
           >
-            {showRules ? "Hide Rules" : "Show Rules"}
-          </button>
+            {showRules ? "Hide Rules" : "Show Rules"} 
+          </button> 
         </div>
 
         {showRules && (
@@ -194,7 +196,7 @@ function Game() {
                     <div className="session-rank">#{index + 1}</div>
                     <div className="session-details">
                       <strong>Score: {session.finalScore}</strong>
-                      <span>({session.totalRolls} rolls | {session.accuracy}% acc)</span>
+                      <span>({session.totalRolls} rolls | {session.accuracy}% accuracy)</span>
                     </div>
                   </li>
                 ))}

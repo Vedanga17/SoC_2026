@@ -66,7 +66,7 @@ body {
   width: 100%; 
   max-width: 400px; /* Keeps the dice from taking up the whole screen */
   height: auto;
-  mix-blend-mode: multiply; /* tries to blend the bg of both the image and the screen */
+  mix-blend-mode: multiply; /* blends the background of both the image and the screen */
 }
 
 .hero-content {
