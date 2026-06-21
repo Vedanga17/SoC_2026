@@ -1,6 +1,6 @@
 # Week 3: E-Commerce Product Comparison 🛒
 
-This project is a modular, responsive e-commerce product comparison page. It uses modern React architecture by breaking down a complex UI into reusable components and utilizing a Just-In-Time (JIT) CSS engine (which is Tailwind) for styling.
+This week's assignment required me to replicate a responsive e-commerce product comparison page. It uses modern React architecture by breaking down a complex UI into reusable components and utilizing a Just-In-Time CSS engine (which is Tailwind) for styling.
 
 ## 🚀 Technologies Used
 
