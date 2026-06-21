@@ -30,9 +30,9 @@ src/
 ├── App.jsx                 # Main application entry point
 └── main.jsx                # React DOM render script
 
-![Project Screenshot](assets/ss1.png)
-![Project Screenshot](assets/ss2.png)
-![Project Screenshot](assets/ss3.png)
-![Project Screenshot](assets/ss4.png)
-![Project Screenshot](assets/ss5.png)
-![Project Screenshot](assets/ss6.png)
+![Project Screenshot](src/assets/ss1.png)
+![Project Screenshot](src/assets/ss2.png)
+![Project Screenshot](src/assets/ss3.png)
+![Project Screenshot](src/assets/ss4.png)
+![Project Screenshot](src/assets/ss5.png)
+![Project Screenshot](src/assets/ss6.png)
