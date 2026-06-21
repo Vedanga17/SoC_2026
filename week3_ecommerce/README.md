@@ -29,6 +29,7 @@ src/
 ├── App.css                 # Triggers the Tailwind CSS JIT compiler
 ├── App.jsx                 # Main application entry point
 └── main.jsx                # React DOM render script
+```
 
 ![Project Screenshot](src/assets/ss1.png)
 ![Project Screenshot](src/assets/ss2.png)
