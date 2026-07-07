@@ -13,11 +13,17 @@ const app = express(); // initialize object
 // app.use(express.urlencoded());
 // app.use(cookieParser());
 
-app.get('/health', (req, res) => { // get HTTP endpoint
-    res.send("Backend running successfully!");
-})
-app.post('/student', (req, res) => { // post HTTP endpoint
-    res.send("Student created successfully!")
-})
+
+// app.get('/health', (req, res) => { // get HTTP endpoint
+//     res.send("Backend running successfully!");
+// })
+// app.post('/student', (req, res) => { // post HTTP endpoint
+//     res.send("Student created successfully!")
+// })
+
+
+import { router } from './routes/student.routes.js';
+
+app.use('/api/students', router);
 
 export {app}; // export app to be used in index.js
