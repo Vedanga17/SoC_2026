@@ -11,7 +11,7 @@ const app = express(); // initialize object
 //     limit: "16kb"
 // }));
 // app.use(express.urlencoded());
-// app.use(cookieParser());
+app.use(cookieParser());
 
 
 // app.get('/health', (req, res) => { // get HTTP endpoint
