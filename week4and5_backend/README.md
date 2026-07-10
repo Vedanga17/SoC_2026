@@ -185,4 +185,13 @@ src/
 ### ✅ Week 5 Outcome
 By the end of Week 5, the backend supported secure student sessions, authenticated profile updates, and a useful analytics endpoint, all built on top of the original Week 4 student system.
 
+
+![Project Screenshot](src/assets/ss5.png)
+![Project Screenshot](src/assets/ss6.png)
+![Project Screenshot](src/assets/ss7.png)
+![Project Screenshot](src/assets/ss8.png)
+![Project Screenshot](src/assets/ss9.png)
+![Project Screenshot](src/assets/ss10.png)
+
+
     

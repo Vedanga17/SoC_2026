@@ -1,10 +1,9 @@
 import { ApiError } from "../utils/ApiError.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
 import { Student } from "../models/student.models.js";
 
 // we want to logout, but for that we need to be logged in first. this middleware verifies if the student is currently logged in.
-export const verifyJWT = asyncHandler(async(req, res, next) => {
+export const verifyJWT = async (req, res, next) => {
     try {
         // get the access tokens from the cookies (since we sent cookies in the response while logging in the student, we have
         // access to cookies in the request also).
@@ -28,11 +27,19 @@ export const verifyJWT = asyncHandler(async(req, res, next) => {
         
         // in the request's body, the student (with all its info) is stored in req.student for further usage.
         req.student = student;
-        next() // since it's a middleware, we need to pass the flow of control to the next line.
+        if (typeof next === 'function') {
+            return next() // since it's a middleware, we need to pass the flow of control to the next line.
+        }
+
+        return
 
     } catch (error) {
         // if there's an error anywhere, just log an error message.
+        if (typeof next === 'function') {
+            return next(new ApiError(401, error?.message || "Invalid access token"))
+        }
+
         throw new ApiError(401, error?.message || "Invalid access token")
     }
     
-})
+}

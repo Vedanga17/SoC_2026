@@ -2,6 +2,7 @@ import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiError } from '../utils/APIerror.js';
 import { Student } from '../models/student.models.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
+import jwt from 'jsonwebtoken';
 
 const generateAccessAndRefreshTokens = async(studentId) => {
     try {
@@ -26,6 +27,12 @@ const generateAccessAndRefreshTokens = async(studentId) => {
     }
 }
 
+  const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  }
+
 const registerStudent = asyncHandler(async (req, res) => {
   // key steps to be followed while registering:
   // Need to get student details from frontend (postman will do that)
@@ -36,24 +43,24 @@ const registerStudent = asyncHandler(async (req, res) => {
   // Check if the student has been successfully created or not
   // send success message/response
 
-  const {name, roll_number, branch, semester, email, password} = req.body;
+  const {name, roll_number, branch, semester, email, password} = req.body || {};
 
-  if (name === "") {
+  if (!name) {
     throw new ApiError(400, "Name cannot be empty, it is required.");
   }
-  if (roll_number === "") {
+  if (!roll_number) {
     throw new ApiError(400, "Roll Number cannot be empty, it is required.");
   }
-  if (branch === "") {
+  if (!branch) {
     throw new ApiError(400, "Branch cannot be empty, it is required.");
   }
-  if (semester === "") {
+  if (semester === undefined || semester === null || semester === "") {
     throw new ApiError(400, "Semester cannot be empty, it is required.");
   }
-  if (email === "") {
+  if (!email) {
     throw new ApiError(400, "Email cannot be empty, it is required.");
   }
-  if (password === "") {
+  if (!password) {
     throw new ApiError(400, "Password cannot be empty, it is required.");
   }
 
@@ -118,16 +125,11 @@ const loginStudent = asyncHandler(async(req, res) => {
   // now again query the student from the database, but don't bring in his password and his refresh token, as it is not required.
   const loggedStudent = await Student.findById(student._id).select("-password -refreshToken")
 
-  const options = {
-        httpOnly: true,
-        secure: true // to ensure we send safe cookies only
-    }
-
     // now that the work is done, time to submit the response.
   return res
   .status(200) // success number
-  .cookie("accessToken", accessToken, options) // return the access token through a cookie.
-  .cookie("refreshToken", refreshToken, options) // return the refresh token through a cookie.
+  .cookie("accessToken", accessToken, cookieOptions) // return the access token through a cookie.
+  .cookie("refreshToken", refreshToken, cookieOptions) // return the refresh token through a cookie.
   .json(
       new ApiResponse(
           200, 
@@ -177,19 +179,14 @@ const refreshAccessToken = asyncHandler(async(req, res) => {
             
         }
     
-        const options = {
-            httpOnly: true,
-            secure: true
-        }
-        
         // generate new access and refresh tokens for the student so that they can login.
-        const {accessToken, newRefreshToken} = await generateAccessAndRefreshTokens(student._id)
+        const {accessToken, refreshToken: newRefreshToken} = await generateAccessAndRefreshTokens(student._id)
         
         // after everything, return the final response.
         return res
         .status(200)
-        .cookie("accessToken", accessToken, options) // send the access token.
-        .cookie("refreshToken", newRefreshToken, options) // send the refresh token.
+        .cookie("accessToken", accessToken, cookieOptions) // send the access token.
+        .cookie("refreshToken", newRefreshToken, cookieOptions) // send the refresh token.
         .json(
             new ApiResponse(
                 200, 
@@ -221,16 +218,11 @@ const logoutStudent = asyncHandler(async(req, res) => {
         }
     )
 
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
-    
     // return the response: here, the access and refresh token cookies have been CLEARED/DELETED.
     return res
     .status(200)
-    .clearCookie("accessToken", options) // clearCookie clears out/deletes the access token.
-    .clearCookie("refreshToken", options) // clearCookie clears out/deletes the refresh token.
+    .clearCookie("accessToken", cookieOptions) // clearCookie clears out/deletes the access token.
+    .clearCookie("refreshToken", cookieOptions) // clearCookie clears out/deletes the refresh token.
     .json(new ApiResponse(200, {}, "User logged Out")) // no data to send, therefore empty {}.
 });
 

@@ -26,6 +26,9 @@ const studentSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    refreshToken: {
+        type: String,
+    },
     password: {
         type: String,
         required: true
@@ -33,11 +36,11 @@ const studentSchema = new mongoose.Schema({
 }, 
 {timestamps: true})
 
-studentSchema.pre("save", async function (next) {
-    if(!this.isModified("password")) return next();
+studentSchema.pre("save", async function () {
+    if(!this.isModified("password")) return;
 
     this.password = await bcrypt.hash(this.password, 10);
-    next();
+    return;
 })
 
 studentSchema.methods.checkPasswordValidity = async function (password) {
@@ -51,7 +54,7 @@ studentSchema.methods.generateAccessToken = function() {
         email: this.email,
         name: this.name
         },
-        process.env.ACCESS_TOKEN,
+        process.env.ACCESS_TOKEN_SECRET,
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
         }
@@ -63,7 +66,7 @@ studentSchema.methods.generateRefreshToken = function() {
         {
         _id: this._id,
         },
-        process.env.REFRESH_TOKEN,
+        process.env.REFRESH_TOKEN_SECRET,
         {
             expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
         }
